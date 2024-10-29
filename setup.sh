@@ -46,6 +46,27 @@ sed -i "/'ENGINE': 'django.db.backends.postgresql'/a \
         'PASSWORD': 'password', \
         'HOST': 'localhost', \
         'PORT': '5432'," backend/settings.py
+#!/bin/bash
+
+# Project setup variables
+PROJECT_ID="your-firebase-project-id"  # **Replace with your actual project ID**
+REGION="us-central1"  # Firebase region
+
+# Securely retrieve sensitive data from environment variables
+GEMINI_API_KEY=$(echo $GEMINI_API_KEY_ENV_VAR)
+FIREBASE_CONFIG=$(echo $FIREBASE_CONFIG_ENV_VAR)  # If needed
+
+# Function to display an error message and exit
+error_exit() {
+  echo "Error: $1" >&2
+  exit 1
+}
+
+# --- Project Setup ---
+# Check if Firebase CLI is installed, install if necessary
+if ! command -v firebase &> /dev/null; then
+  echo "Firebase CLI not found. Installing..."
+  npm install
 
 # Migrate database and create superuser
 echo "Migrating database..."
