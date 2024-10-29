@@ -67,6 +67,70 @@ error_exit() {
 if ! command -v firebase &> /dev/null; then
   echo "Firebase CLI not found. Installing..."
   npm install
+#!/bin/bash
+
+# Create project directories
+mkdir -p hotel-resto-pos
+mkdir -p hotel-resto-pos/backend
+mkdir -p hotel-resto-pos/web
+mkdir -p hotel-resto-pos/android
+
+# Initialize Firebase project (if not already done) in hotel-resto-pos directory
+cd hotel-resto-pos
+firebase init # Follow the Firebase CLI prompts
+
+# Backend (Firebase Functions)
+cd backend
+firebase init functions # Follow prompts, select appropriate options
+npm install express firebase-admin # Install backend dependencies
+
+# Web app (Angular - assuming Angular is already set up in the web directory)
+cd ../web
+npm install  # Install dependencies if needed
+
+# Android app (Create an empty project if necessary)
+cd ../android
+# Android Studio setup/initialization (manual steps)
+
+echo "Project directories created.  Next steps (manual):"
+echo "1. Backend (Firebase Functions): Implement API endpoints in backend/index.js"
+echo "2. Web app (Angular): Implement frontend components and API integration in the web directory"
+echo "3. Android app: Implement app logic and UI, integrate with the API"
+echo "4. Testing: Test each component thoroughly"
+echo "5. Deployment: Deploy backend to Firebase Functions, web app to Firebase Hosting, and Android app to Google Play Store (or other distribution platforms)."
+#!/bin/bash
+
+# Create project directories
+mkdir -p hotel-resto-pos
+mkdir -p hotel-resto-pos/backend
+mkdir -p hotel-resto-pos/web
+mkdir -p hotel-resto-pos/android
+
+# Initialize Firebase project (if not already done) in hotel-resto-pos directory
+cd hotel-resto-pos
+firebase init # Follow the Firebase CLI prompts
+
+# Backend (Firebase Functions)
+cd backend
+firebase init functions # Follow prompts, select appropriate options
+npm install express firebase-admin # Install backend dependencies
+
+# Web app (Angular - assuming Angular is already set up in the web directory)
+cd ../web
+npm install  # Install dependencies if needed
+
+# Android app (Create an empty project if necessary)
+cd ../android
+# Android Studio setup/initialization (manual steps)
+
+echo "Project directories created.  Next steps (manual):"
+echo "1. Backend (Firebase Functions): Implement API endpoints in backend/index.js"
+echo "2. Web app (Angular): Implement frontend components and API integration in the web directory"
+echo "3. Android app: Implement app logic and UI, integrate with the API"
+echo "4. Testing: Test each component thoroughly"
+echo "5. Deployment: Deploy backend to Firebase Functions, web app to Firebase Hosting, and Android app to Google Play Store (or other distribution platforms)."
+cd hotel-resto-pos/backend
+    firebase deploy --only functions
 
 # Migrate database and create superuser
 echo "Migrating database..."
